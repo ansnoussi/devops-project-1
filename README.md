@@ -15,3 +15,18 @@ We will provision using Vagrant 1 control vm and 3 nodes for deployment from Vir
 
 1. `vagrant up` to provision the vms from virtualbox.
 2. `vagrant ssh <machine_name>` to connect to the vm via ssh (example `vagrant ssh node1`).
+3. copy the hosts file in the control machine so we can have name resolution available :
+
+- `vagrant ssh control`
+- `sudo cp /vagrant/hosts /etc/hosts`
+- test with : `ping node1`
+
+4. ssh connectivity should be available by default :
+
+- from control : `ssh vagrant@node1` with password `vagrant`
+
+5. if you want to enable ssh with key from control to different nodes:
+
+- generate ssh key : `ssh-keygen`
+- copy key to different nodes : `ssh-copy-id node1 && ssh-copy-id node2 && ssh-copy-id node3`
+- ssh into any node without password : `ssh vagrant@node1`
