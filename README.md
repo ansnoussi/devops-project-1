@@ -30,3 +30,57 @@ We will provision using Vagrant 1 control vm and 3 nodes for deployment from Vir
 - generate ssh key : `ssh-keygen`
 - copy key to different nodes : `ssh-copy-id node1 && ssh-copy-id node2 && ssh-copy-id node3`
 - ssh into any node without password : `ssh vagrant@node1`
+
+6. install ansible in the control vm: `sudo apt install ansible`
+
+7. check for connectivity with ansible : `ansible nodes -i myhosts -m command hostname` (`-i` : inventory, `-m` : module, `-a` : argument for the chosen module)
+   => expected output:
+
+```bash
+node1 | SUCCESS | rc=0 >>
+node1
+
+node2 | SUCCESS | rc=0 >>
+node2
+
+node3 | SUCCESS | rc=0 >>
+node3
+
+```
+
+8. install python-simplejson in all of the nodes:
+   `ansible nodes -i myhosts -m command -a 'sudo apt-get -y install python-simplejson'`
+
+9. run the playbook to install docker: `ansible-playbook -i myhosts -K playbook1.yml`
+   => expected output:
+
+```bash
+PLAY [nodes] **********************************************************************************************************************************************************************
+
+TASK [Gathering Facts] ************************************************************************************************************************************************************
+ok: [node2]
+ok: [node1]
+ok: [node3]
+
+TASK [ensure docker is installed] *************************************************************************************************************************************************
+changed: [node2]
+changed: [node1]
+changed: [node3]
+
+TASK [ensure docker compose is installed] *****************************************************************************************************************************************
+changed: [node2]
+changed: [node1]
+changed: [node3]
+
+TASK [add the user vagrant to the docker group] ***********************************************************************************************************************************
+changed: [node1]
+changed: [node2]
+changed: [node3]
+
+PLAY RECAP ************************************************************************************************************************************************************************
+node1                      : ok=4    changed=3    unreachable=0    failed=0
+node2                      : ok=4    changed=3    unreachable=0    failed=0
+node3                      : ok=4    changed=3    unreachable=0    failed=0
+
+
+```
