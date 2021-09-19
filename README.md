@@ -29,7 +29,7 @@ We will provision using Vagrant 1 control vm and 3 nodes for deployment from Vir
 
 - generate ssh key : `ssh-keygen`
 - copy key to different nodes : `ssh-copy-id node1 && ssh-copy-id node2 && ssh-copy-id node3`
-- ssh into any node without password : `ssh vagrant@node1`
+- ssh into any node without password : `ssh node1`
 
 6. install ansible in the control vm: `sudo apt install ansible`
 
