@@ -84,3 +84,14 @@ node3                      : ok=4    changed=3    unreachable=0    failed=0
 ```
 
 10. install and configure docker swarm on the nodes: `ansible-playbook -i myhosts -k swarm.yml`
+
+11. deploy the stack in one of the nodes:
+
+- `cd /vagrant/docker`
+- `docker stack deploy --compose-file docker-compose-remote.yml my-flask-app`
+
+**Note:** when using docker swarm, the image needs to be hosted on a container registry.
+=> in the docker folder run:
+
+- `docker build -t anissnoussi/simpleflask:1.0 .`
+- `docker push anissnoussi/simpleflask:1.0`
