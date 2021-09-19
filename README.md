@@ -2,6 +2,10 @@
 
 A simple web app, but with all the devops bells and whistles (Vagrant, Ansible, Docker, Docker Swarm)
 
+## Overview
+
+![Architecture Description](./overview.drawio.svg)
+
 ## Setup
 
 We will provision using Vagrant 1 control vm and 3 nodes for deployment from VirtualBox.
