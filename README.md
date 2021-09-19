@@ -95,3 +95,11 @@ node3                      : ok=4    changed=3    unreachable=0    failed=0
 
 - `docker build -t anissnoussi/simpleflask:1.0 .`
 - `docker push anissnoussi/simpleflask:1.0`
+
+12. when finished, just stop and destroy all the vms: `vagrant destroy` .
+
+### debug
+
+- `docker node ls` : to see all the nodes in docker swarm.
+- `docker stack ls` : to see the deployed stacks.
+- `docker stack services my-flask-app` to see all the services in my-flask-app stack.
