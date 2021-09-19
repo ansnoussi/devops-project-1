@@ -1,4 +1,4 @@
-# Devops-web-1
+# devops-project-1
 
 A simple web app, but with all the devops bells and whistles (Vagrant, Ansible, Docker, Docker Swarm)
 
