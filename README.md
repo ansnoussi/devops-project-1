@@ -87,7 +87,7 @@ node2                      : ok=4    changed=3    unreachable=0    failed=0
 node3                      : ok=4    changed=3    unreachable=0    failed=0
 ```
 
-10. install and configure docker swarm on the nodes: `ansible-playbook -i myhosts -k swarm.yml`
+10. install and configure docker swarm on the nodes: `ansible-playbook -i myhosts -k ansible-swarm-playbook/swarm.yml`
 
 11. deploy the stack in one of the nodes:
 
