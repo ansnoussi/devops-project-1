@@ -37,7 +37,7 @@ We will provision using Vagrant 1 control vm and 3 nodes for deployment from Vir
 
 6. install ansible in the control vm: `sudo apt install ansible`
 
-7. check for connectivity with ansible : `ansible nodes -i myhosts -m command hostname` (`-i` : inventory, `-m` : module, `-a` : argument for the chosen module)
+7. check for connectivity with ansible : `ansible nodes -i myhosts -m command -a hostname` (`-i` : inventory, `-m` : module, `-a` : argument for the chosen module)
    => expected output:
 
 ```bash
