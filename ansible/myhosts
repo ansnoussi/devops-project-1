@@ -5,3 +5,10 @@ control
 node1
 node2
 node3
+
+[manager]
+node1
+
+[worker] 
+node2
+node3
