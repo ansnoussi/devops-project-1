@@ -1,0 +1,32 @@
+- hosts: manager
+  become: yes
+  tasks:
+    - name: Create portainer container
+      docker_container:
+        name: portainer
+        image: portainer/portainer-ce
+        state: started
+        recreate: yes
+        restart_policy: always
+        published_ports:
+          - "8000:8000"
+          - "9000:9000"
+        volumes:
+          - /var/run/docker.sock:/var/run/docker.sock
+          - portainer_data:/data
+
+- hosts: worker
+  become: yes
+  tasks:
+    - name: Create portainer agents
+      docker_container:
+        name: portainer
+        image: portainer/agent
+        state: started
+        recreate: yes
+        restart_policy: always
+        published_ports:
+          - "9001:9001"
+        volumes:
+          - /var/run/docker.sock:/var/run/docker.sock
+          - portainer_data:/data
