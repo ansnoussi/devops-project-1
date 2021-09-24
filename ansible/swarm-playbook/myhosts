@@ -1,6 +1,6 @@
-[control]
+[manager]
 node1
 
-[nodes] 
+[worker] 
 node2
 node3
