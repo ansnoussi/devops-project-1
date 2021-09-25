@@ -60,7 +60,11 @@ node3
 ```
 
 8. install python-simplejson in all of the nodes:
-   `ansible nodes -i myhosts -m command -a 'sudo apt-get -y install python-simplejson python3-pip mc'`
+
+```
+ansible nodes -i myhosts -m command -a 'sudo apt-get update'
+ansible nodes -i myhosts -m command -a 'sudo apt-get -y install python-simplejson python3-pip mc'
+```
 
 9. run the playbook to install docker: `ansible-playbook -i myhosts -K playbook1.yml`
    => expected output:
@@ -111,18 +115,16 @@ node3                      : ok=4    changed=3    unreachable=0    failed=0
 
 ## Installing portainer :
 
-(STILL MISCONFIGURED)
-
-- use the Ansible playbook to install portainer community edition and portainer agents on the nodes.
+- create an external overlay network
 
 ```
-ansible-playbook -i myhosts -K portainer.yml
+docker network create --driver overlay net-public
 ```
 
-- use ssh portforwarding to access the dashboard from the host machine:
+- deploy portainer stack from yaml file
 
 ```
-vagrant ssh node1 -- -L 8081:localhost:9000
+docker stack deploy -c portainer.yml portainer
 ```
 
 ### debug
@@ -130,3 +132,4 @@ vagrant ssh node1 -- -L 8081:localhost:9000
 - `docker node ls` : to see all the nodes in docker swarm.
 - `docker stack ls` : to see the deployed stacks.
 - `docker stack services my-flask-app` to see all the services in my-flask-app stack.
+- `vagrant ssh node1 -- -L 8081:localhost:9000` port forward using ssh
