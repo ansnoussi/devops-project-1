@@ -127,6 +127,8 @@ docker network create --driver overlay net-public
 docker stack deploy -c portainer.yml portainer
 ```
 
+- portainer can be accessed now from the host machine at `http://192.168.57.11:9000`
+
 ### debug
 
 - `docker node ls` : to see all the nodes in docker swarm.
