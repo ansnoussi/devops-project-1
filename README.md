@@ -109,7 +109,9 @@ node3                      : ok=4    changed=3    unreachable=0    failed=0
 
 12. when finished, just stop and destroy all the vms: `vagrant destroy` .
 
-## Installing portainer:
+## Installing portainer :
+
+(STILL MISCONFIGURED)
 
 - use the Ansible playbook to install portainer community edition and portainer agents on the nodes.
 
