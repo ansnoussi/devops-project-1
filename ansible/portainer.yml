@@ -1,6 +1,12 @@
 - hosts: manager
   become: yes
   tasks:
+    - name: Create overlay network
+      docker_network:
+        name: portainer_overlay_network
+        driver: overlay
+        attachable: yes
+
     - name: Create portainer container
       docker_container:
         name: portainer
@@ -11,6 +17,8 @@
         published_ports:
           - "8000:8000"
           - "9000:9000"
+        networks:
+          - name: portainer_overlay_network
         volumes:
           - /var/run/docker.sock:/var/run/docker.sock
           - portainer_data:/data
@@ -26,7 +34,9 @@
         recreate: yes
         restart_policy: always
         published_ports:
-          - "9001:9001"
+          - 9001:9001
+        networks_cli_compatible: yes
+        network_mode: portainer_overlay_network
         volumes:
           - /var/run/docker.sock:/var/run/docker.sock
           - portainer_data:/data

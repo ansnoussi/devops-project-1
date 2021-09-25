@@ -35,7 +35,14 @@ We will provision using Vagrant 1 control vm and 3 nodes for deployment from Vir
 - copy key to different nodes : `ssh-copy-id node1 && ssh-copy-id node2 && ssh-copy-id node3`
 - ssh into any node without password : `ssh node1`
 
-6. install ansible in the control vm: `sudo apt install ansible`
+6. install ansible in the control vm:
+
+```
+sudo apt install software-properties-common
+sudo apt-add-repository ppa:ansible/ansible
+sudo apt update
+sudo apt install ansible
+```
 
 7. check for connectivity with ansible : `ansible nodes -i myhosts -m command -a hostname` (`-i` : inventory, `-m` : module, `-a` : argument for the chosen module)
    => expected output:
